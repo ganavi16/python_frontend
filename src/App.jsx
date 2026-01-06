@@ -1,19 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 
+import QuizList from "./quiz/QuizList";
+import QuizAttempt from "./quiz/QuizAttempt";
+
+import Result from "./results/Result";
+import History from "./results/History";
+
+import AdminDashboard from "./admin/AdminDashboard";
+
+export default function App() {
   return (
-    <>
-      <div className="bg-blue-300 font-bold text-3xl p-4">
-        <h1>My name is Rudraksh</h1>
-      </div>
-        <p className="font-extrabold">it's a python project</p>
-    </>
-  )
-}
+    <BrowserRouter>
+      <Routes>
 
-export default App
+        <Route path="/" element={<QuizList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route path="/quiz/:id" element={<QuizAttempt />} />
+
+        <Route path="/result/:id" element={<Result />} />
+        <Route path="/history" element={<History />} />
+
+        <Route path="/admin" element={<AdminDashboard />} />
+
+      </Routes>
+    </BrowserRouter>
+  );
+}
